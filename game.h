@@ -16,6 +16,7 @@ public:
 private:
     QGraphicsScene *scene;
     QTimer *timer;
+    QTimer *ItemsTimer;
 
 
 };

@@ -3,14 +3,17 @@
 
 #include <QPainter>
 #include <QTimer>
+//#include <windows.h>
 
 Game::Game(QWidget *parent){
+
+    srand(time(NULL));
 
     scene = new QGraphicsScene(this);
     setScene(scene);
 
     setRenderHint(QPainter::Antialiasing);
-    scene->setSceneRect(-200, -200, 300, 300);
+    scene->setSceneRect(0, 0, 1000, 1000);
 
     QPen pen = QPen(Qt::red);
 
@@ -24,13 +27,11 @@ Game::Game(QWidget *parent){
     scene->addLine(RightLine, pen);
     scene->addLine(BottomLine, pen);
 
-    int BallsCount = 1;
-    for(int i = 0; BallsCount > i; i++){
-
-        Body *Obj = new Body;
-        scene->addItem(Obj);
-
-    }
+    QGraphicsTextItem *HelpText = new QGraphicsTextItem;
+    HelpText->setPlainText(QString("Presiona la barra espaciadora para agregar un nuevo planeta."));
+    HelpText->setDefaultTextColor(Qt::red);
+    HelpText->setPos(0, 0);
+    scene->addItem(HelpText);
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
@@ -40,6 +41,10 @@ Game::Game(QWidget *parent){
 
 void Game::keyPressEvent(QKeyEvent *Event){
 
+    if(Event->key() == Qt::Key_Space){
 
+        Body *Obj = new Body;
+        scene->addItem(Obj);
 
+    }
 }

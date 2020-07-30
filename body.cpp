@@ -1,21 +1,20 @@
 #include "body.h"
 
-Body::Body(QGraphicsItem *parent)
-    : Speed(5)
-{
+Body::Body(QGraphicsItem *parent){
 
     //Angle = qrand() % 360;
     setRotation(180);
 
-    this->setX(qrand() % 200);
-    this->setY(-200);
+    this->Speed = rand() % 10 + 1;
+    this->setX(rand() % 1000 + 1);
+    this->setY(0);
 
 
 }
 
 QRectF Body::boundingRect() const{
 
-    return QRect(0, 0, 20, 20);
+    return QRect(0, 0, 30, 30);
 
 }
 
