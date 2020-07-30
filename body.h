@@ -1,19 +1,21 @@
 #ifndef BODY_H
 #define BODY_H
 
-//#include <QGraphicsEllipseItem>
+#include <QPainter>
+#include <QGraphicsItem>
+#include <QGraphicsScene>
 #include <QObject>
 
-class Body//: public QGraphicsEllipseItem
+class Body: public QGraphicsItem
 {
 //    Q_OBJECT
 public:
-    Body(/*QGraphicsItem * = nullptr*/);
-//    QRectF boundingRect() const override;
-//    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
+    Body(QGraphicsItem * = nullptr);
+    QRectF boundingRect() const override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
 
-public: //slots:
-    void Move();
+protected:
+    void advance(int phase) override;
 
 private:
     void Collide();

@@ -2,6 +2,7 @@
 #include "body.h"
 
 #include <QPainter>
+#include <QTimer>
 
 Game::Game(QWidget *parent){
 
@@ -23,6 +24,17 @@ Game::Game(QWidget *parent){
     scene->addLine(RightLine, pen);
     scene->addLine(BottomLine, pen);
 
+    int BallsCount = 1;
+    for(int i = 0; BallsCount > i; i++){
+
+        Body *Obj = new Body;
+        scene->addItem(Obj);
+
+    }
+
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
+    timer->start(100);
 
 }
 
